@@ -6,3 +6,6 @@
     - name: Print hello world
       debug:
         msg: "Hello World"
+    - name: Print ALL GOOD
+      debug:
+        msg: "All Good Now"
