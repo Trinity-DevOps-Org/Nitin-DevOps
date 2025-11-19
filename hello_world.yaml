@@ -1,0 +1,8 @@
+---
+- name: Print Hello World using Jenkins job
+  become: true
+  hosts: all
+  tasks:
+    - name: Print hello world
+      debug:
+        msg: "Hello World"
