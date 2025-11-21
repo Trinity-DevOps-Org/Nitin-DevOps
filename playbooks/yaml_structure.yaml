@@ -1,0 +1,26 @@
+name: Deep
+certified: false
+port: 80
+fruit_list:
+  - banana
+  - apple
+  - orange
+fruit_list2:
+  - banana
+  - apple
+  - orange
+
+Userinfo:
+  name: Nitin
+  location: Bangalore
+  certified: true
+
+Employee_Info:   
+#( List of Dictonary )
+ - name: Nitin
+   location: Bangalore
+   certified: true
+ - name: Pat
+   location: USA
+   certified: false
+
