@@ -1,0 +1,24 @@
+---
+- name: Creating a webserver
+  hosts: all
+  vars_prompt:
+    - name: pkg_name
+      prompt: What is the name of the package?
+      private: false
+  become: true
+  tasks:
+    - name: "Installing apache({{ pkg_name }})"
+      dnf:
+        name: "{{ pkg_name }}"
+        state: latest
+
+    - name: Starting the apache service
+      systemd:
+        name: "{{ pkg_name }}"
+        state: started
+        enabled: true
+
+    - name: Copy website into the nodes
+      copy:
+        src: index.html
+        dest: /var/www/html

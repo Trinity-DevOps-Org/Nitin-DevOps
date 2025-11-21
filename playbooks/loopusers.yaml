@@ -1,0 +1,23 @@
+---
+- name: Creating multiple users
+  hosts: servers
+  become: true
+  tasks:
+    - name: adding 3 users using loop module
+      user:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - nitin
+        - deep
+        - pat
+
+    - name: Running tail command
+      command: tail -5 /etc/passwd
+      register: user_info
+      changed_when: false
+
+
+    - name: print users
+      debug:
+        var: user_info.stdout_lines

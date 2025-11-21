@@ -1,0 +1,13 @@
+---
+- name: checking the package
+  hosts: servers
+  become: true
+  tasks:
+    - name: checking if package is already present or not
+      command: rpm -q httpd
+      changed_when: false
+      register: httpd_status
+
+    - name: print the status of httpd
+      debug:
+        var: httpd_status.stdout

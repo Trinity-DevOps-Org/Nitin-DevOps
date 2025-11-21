@@ -1,0 +1,9 @@
+---
+- name: deploying the hosts file
+  hosts: servers
+  become: true
+  tasks:
+    - name: deploying hosts file
+      ansible.builtin.template:
+        src: hosts2.j2
+        dest: /tmp/hosts

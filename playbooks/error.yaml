@@ -1,0 +1,31 @@
+---
+- name: Installing apache
+  hosts: servers
+  become: true
+  ignore_errors: true
+  tasks:
+    - block:
+        - name: Installing httpd
+          dnf:
+            name: httpd
+            state: latest
+
+        - name: Starting the service
+          systemd:
+            name: httpd
+            state: started
+            enabled: true
+          ignore_errors: true                     #here just to inform that it can be used at task level also
+
+        - name: copy file
+          copy:
+            src: index.html
+            dest: /var/www/html
+      rescue:
+        - name: Executing because block failes
+          debug:
+            msg: Executing Rescue
+      always:
+        - name: always
+          debug:
+            msg: running always

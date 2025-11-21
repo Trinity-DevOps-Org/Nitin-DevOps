@@ -1,0 +1,21 @@
+---
+- name: Install Webserver on all hosts
+  hosts: all
+  become: true
+  tasks:
+    - name: Installing Apache(httpd) server
+      dnf:
+        name: httpd
+        state: present
+
+    - name: Starting Apache(httpd) service
+      systemd:
+        name: httpd
+        enabled: true
+        state: started
+    
+    - name: Copying index.html to all hosts
+      copy:
+        src: index.html
+        dest: /var/www/html 
+

@@ -1,0 +1,16 @@
+---
+# tasks file for apache
+- name: Installing Apache
+  dnf:
+    name: "{{ pkg_name }}"
+    state: present
+
+- name: Starting the service
+  systemd:
+    name: httpd
+    state: started
+- name: Copy index.html file
+  template:
+    src: index.j2
+    dest: /var/www/html/index.html
+  notify: restart httpd

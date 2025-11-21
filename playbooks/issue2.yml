@@ -1,0 +1,25 @@
+---
+- name: Configure the ssh banner
+  hosts: servers
+  force_handlers: true     #Even if task2 fails still hanlder of task1 will run if it made a change.
+  become: true
+  tasks:
+    - name: Change the sshd conf file
+      ansible.builtin.lineinfile:
+        regexp: "#Banner non"
+        line: "Banner /etc/issue"
+        dest: /etc/ssh/sshd_config
+      notify: restart sshd service
+
+    - name: create etc issue file
+      ansible.builtin.copy:
+        content: |
+          ##############WARNING##########
+          ############BE AWARE############
+        dest: /etc/issue
+
+  handlers:
+    - name: restart sshd service
+      ansible.builtin.systemd:
+        name: sshd
+        state: restarted

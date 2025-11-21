@@ -1,0 +1,8 @@
+---
+- name: Printing data
+  hosts: all
+  become: true
+  tasks:
+    - name: Print msg on remote machine using debug
+      debug:
+        msg: Hello world!!!! :)

@@ -1,0 +1,20 @@
+[web]
+node1 #myinfo=Deep 
+
+[db]
+node2 #myinfo=Pat
+
+[servers:children]
+web
+db
+
+[win]
+172.25.230.195
+
+[win:vars]
+ansible_user=admin
+ansible_password=Pa$$w0rd
+ansible_connection=winrm
+#ansible_winrm_transport=basic
+ansible_winrm_server_cert_validation=ignore
+ansible_port=5985

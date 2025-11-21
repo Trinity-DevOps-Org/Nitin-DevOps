@@ -1,0 +1,10 @@
+---
+- name: Start HTTPD service on all hosts
+  hosts: all
+  become: true
+  tasks:
+    - name: Starting HTTPD service
+      systemd:
+        name: httpd
+        enabled: true
+        state: started

@@ -1,0 +1,9 @@
+---
+- name: displaying message
+  hosts: all
+  tasks:
+    - name: Print the value of a variables
+      debug:
+        var: myinfo
+      vars:
+        myinfo: "more pratice"

@@ -1,0 +1,15 @@
+---
+- name: Adding Users
+  hosts: servers
+  become: true
+  vars_files:
+    - userinfovault.yaml 
+  tasks:
+    - name: Adding Users in Machines
+      user:
+        name: "{{ item.name }}"
+        comment: "{{ item.comment }}"
+        uid: "{{ item.uid }}"
+        state: present
+        password: "{{ item.password | password_hash('sha512') }}"
+      loop: "{{ users }}" 

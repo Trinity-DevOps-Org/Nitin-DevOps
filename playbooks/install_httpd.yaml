@@ -1,0 +1,10 @@
+---
+- name: Install HTTPD Service
+  hosts: all
+  become: true
+  tasks:
+    - name: Installing HTTPD service
+      dnf:
+        name: httpd
+        state: present
+

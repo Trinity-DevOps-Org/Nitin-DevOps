@@ -1,0 +1,12 @@
+---
+- name: Creating user Nitin
+  hosts: all
+  become: true
+  tasks:
+    - name: Adding user Nitin on all Hosts
+      user:
+       name: nitin
+       state: present
+
+    - name: Check created user
+      command: tail -5 /etc/passwd

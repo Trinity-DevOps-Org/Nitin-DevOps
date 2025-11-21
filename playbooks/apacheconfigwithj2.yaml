@@ -1,0 +1,19 @@
+---
+- name: Installing a package
+  hosts: servers
+  become: true
+  tasks:
+      - name: installing package
+        ansible.builtin.dnf:
+          name: httpd
+          state: present
+      - name: starting the apache service
+        ansible.builtin.systemd:
+          name: httpd
+          state: restarted
+
+      - name: copy file using template j2 on nodes
+        ansible.builtin.template:
+          src: index2.j2
+          dest: /var/www/html/index.html
+    

@@ -1,0 +1,9 @@
+---
+- name: Create file on all hosts
+  hosts: all
+  become: true
+  tasks:
+    - name: Creating file on home directory of nitin
+      copy:
+        dest: "/home/nitin/first_file.txt"
+        content: this is the first file created using ansible playbook on remote hosts 

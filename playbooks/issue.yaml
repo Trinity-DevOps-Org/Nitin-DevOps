@@ -1,0 +1,24 @@
+---
+- name: Configure the ssh banner
+  hosts: node1
+  become: true
+  tasks:
+    - name: Change the sshd conf file
+      ansible.builtin.lineinfile:
+        regexp: "#Banner non"
+        line: "Banner /etc/issue"
+        dest: /etc/ssh/sshd_config
+      notify: restart sshd service
+
+    - name: create etc issue file
+      ansible.builtin.copy:
+        content: |
+          ##############WARNING##########
+          ############BE AWARE############
+        dest: /etc/issue
+
+  handlers:
+    - name: restart sshd service
+      ansible.builtin.systemd:
+        name: sshd
+        state: restartedissue.yaml

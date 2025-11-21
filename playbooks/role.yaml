@@ -1,0 +1,6 @@
+---
+- name: Webserverrrrrrrr Configuration
+  hosts: servers
+  become: true
+  roles:
+    - apache

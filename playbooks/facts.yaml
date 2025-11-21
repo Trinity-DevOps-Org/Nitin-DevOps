@@ -1,0 +1,15 @@
+- name: printing facts
+  hosts: all
+  tasks:
+    - name: printing all the variables
+      debug:
+        msg: "Architecture is {{ ansible_architecture }}"
+
+    - name: printing all the variables
+      debug:
+        msg: "Architecture is {{ ansible_facts.architecture }}"
+
+    - name: printing all the variables
+      debug:
+        msg: "Architecture is {{ ansible_facts['default_ipv4'] }}"
+
